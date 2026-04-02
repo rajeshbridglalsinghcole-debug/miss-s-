@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miss Sareeta | Grades Going Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A843;
+    --gold-light: #F0C96A;
+    --deep: #0D1B2A;
+    --navy: #1A2E42;
+    --teal: #1E7B6E;
+    --teal-light: #2AA89A;
+    --cream: #FDF6EC;
+    --warm-white: #FEFBF5;
+    --text-dark: #0D1B2A;
+    --text-mid: #3A4F63;
+    --text-light: #7A8FA0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--deep);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(30,123,110,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212,168,67,0.12) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Floating shapes */
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: float 8s ease-in-out infinite;
+  }
+  .shape-1 {
+    width: 320px; height: 320px;
+    border: 1.5px solid rgba(212,168,67,0.15);
+    top: -80px; right: -80px;
+    animation-delay: 0s;
+  }
+  .shape-2 {
+    width: 180px; height: 180px;
+    border: 1px solid rgba(30,123,110,0.25);
+    bottom: 100px; right: 120px;
+    animation-delay: -3s;
+  }
+  .shape-3 {
+    width: 80px; height: 80px;
+    background: rgba(212,168,67,0.06);
+    border: 1px solid rgba(212,168,67,0.2);
+    top: 200px; left: 8%;
+    animation-delay: -5s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-left {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.9s ease forwards 0.3s;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212,168,67,0.12);
+    border: 1px solid rgba(212,168,67,0.3);
+    color: var(--gold-light);
+    padding: 7px 18px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.08;
+    margin-bottom: 8px;
+  }
+
+  .hero-name span {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--teal-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .hero-desc {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 44px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--deep);
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 8px 30px rgba(212,168,67,0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(212,168,67,0.5);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover {
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+  }
+
+  /* Hero right — stat cards */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.9s ease forwards 0.6s;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 20px;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s, background 0.3s;
+  }
+  .stat-card:hover {
+    transform: translateX(-8px);
+    background: rgba(255,255,255,0.07);
+  }
+
+  .stat-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .stat-icon.gold { background: rgba(212,168,67,0.15); }
+  .stat-icon.teal { background: rgba(30,123,110,0.18); }
+  .stat-icon.purple { background: rgba(130,90,200,0.15); }
+
+  .stat-info .label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 4px;
+  }
+  .stat-info .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  /* ─── SECTION COMMONS ─── */
+  .section {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--text-dark);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    color: var(--text-mid);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 60px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-bg {
+    background: var(--cream);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 36px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    transition: height 0.3s;
+  }
+  .service-card.gold::before { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .service-card.teal::before { background: linear-gradient(90deg, var(--teal), var(--teal-light)); }
+  .service-card.navy::before { background: linear-gradient(90deg, var(--navy), #2E5073); }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.1);
+  }
+  .service-card:hover::before { height: 6px; }
+
+  .service-emoji {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .service-tag {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .service-card.gold .service-tag { background: rgba(212,168,67,0.1); color: #9B6F10; }
+  .service-card.teal .service-tag { background: rgba(30,123,110,0.1); color: var(--teal); }
+  .service-card.navy .service-tag { background: rgba(26,46,66,0.1); color: var(--navy); }
+
+  /* ─── WHY SECTION ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .why-visual {
+    position: relative;
+  }
+
+  .why-card-main {
+    background: var(--deep);
+    border-radius: 28px;
+    padding: 44px 36px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-card-main::after {
+    content: '★';
+    position: absolute;
+    font-size: 160px;
+    color: rgba(212,168,67,0.05);
+    right: -20px;
+    bottom: -40px;
+    line-height: 1;
+  }
+
+  .why-card-main .big-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .why-card-main .big-label {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+
+  .why-mini-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .mini-card {
+    background: var(--cream);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+  }
+  .mini-card .m-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .mini-card .m-label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  .why-points {
+    list-style: none;
+  }
+  .why-points li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .why-points li:last-child { border-bottom: none; }
+
+  .why-icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: rgba(30,123,110,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .why-point-title {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    font-size: 0.97rem;
+  }
+  .why-point-desc {
+    color: var(--text-mid);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-bg {
+    background: var(--deep);
+  }
+
+  .testimonials-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .testimonials-wrap .section-tag { color: var(--gold-light); }
+  .testimonials-wrap .section-title { color: #fff; }
+  .testimonials-wrap .section-sub { color: rgba(255,255,255,0.5); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .t-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 22px;
+    padding: 32px 28px;
+    transition: transform 0.3s, background 0.3s;
+  }
+  .t-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .t-quote {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .t-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .t-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .t-name {
+    font-weight: 600;
+    color: #fff;
+    font-size: 0.9rem;
+  }
+  .t-role {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-bg {
+    background: var(--cream);
+  }
+
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contact-card {
+    background: var(--deep);
+    border-radius: 28px;
+    padding: 52px 44px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(30,123,110,0.3) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .contact-card .section-tag { color: var(--gold-light); }
+  .contact-card .section-title { color: #fff; font-size: 2rem; margin-bottom: 24px; }
+
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .contact-method:hover { gap: 22px; }
+  .contact-method:last-of-type { border-bottom: none; }
+
+  .c-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .c-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 3px;
+  }
+  .c-value {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .contact-form-side .section-title { font-size: 2rem; margin-bottom: 10px; }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    background: #fff;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 4px rgba(30,123,110,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 8px 24px rgba(30,123,110,0.3);
+    margin-top: 8px;
+  }
+  .btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(30,123,110,0.4);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep);
+    text-align: center;
+    padding: 36px 20px;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.85rem;
+  }
+  footer span { color: var(--gold); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(13,27,42,0.92);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-logo span {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--deep) !important;
+    padding: 9px 22px;
+    border-radius: 100px;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    transition: transform 0.2s, box-shadow 0.2s !important;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212,168,67,0.4);
+    color: var(--deep) !important;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .hero-right { order: -1; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .section { padding: 70px 20px; }
+    .testimonials-wrap, .contact-inner { padding: 70px 20px; }
+    .hero-content { padding: 0 20px; padding-top: 100px; padding-bottom: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Miss <span>Sareeta</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Choose Me</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid"></div>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Now Accepting Students
+      </div>
+      <h1 class="hero-name">
+        Miss Sareeta
+        <span>Grades Going Up.</span>
+      </h1>
+      <p class="hero-tagline">Trinidad's trusted academic tutor</p>
+      <p class="hero-desc">
+        Expert tutoring for SEA Prep, CSEC, and SBA Help. I guide students to reach their full potential with focused, personalised sessions that deliver real results.
+      </p>
+      <div class="cta-row">
+        <a href="tel:18683799751" class="btn-primary">📞 Call Now</a>
+        <a href="#services" class="btn-outline">See Services ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="stat-card">
+        <div class="stat-icon gold">🎓</div>
+        <div class="stat-info">
+          <div class="label">Specialisation</div>
+          <div class="value">SEA Prep</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon teal">📚</div>
+        <div class="stat-info">
+          <div class="label">Curriculum</div>
+          <div class="value">CSEC All Subjects</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">📝</div>
+        <div class="stat-info">
+          <div class="label">Also Available</div>
+          <div class="value">SBA Assistance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="services-bg" id="services">
+  <div class="section reveal">
+    <div class="section-tag">What I Offer</div>
+    <h2 class="section-title">Academic Services<br>Tailored for You</h2>
+    <p class="section-sub">Whether your child is preparing for SEA, working through CSEC, or needs help structuring their SBA — I've got them covered.</p>
+
+    <div class="services-grid">
+      <div class="service-card gold reveal">
+        <span class="service-emoji">🏆</span>
+        <h3 class="service-title">SEA Preparation</h3>
+        <p class="service-desc">Comprehensive preparation for the Secondary Entrance Assessment. We cover Mathematics, English, and Creative Writing with past paper practice and confidence-building strategies.</p>
+        <span class="service-tag">Ages 9–11</span>
+      </div>
+
+      <div class="service-card teal reveal">
+        <span class="service-emoji">📖</span>
+        <h3 class="service-title">CSEC Tutoring</h3>
+        <p class="service-desc">Subject-focused tutoring across the CSEC curriculum. Structured revision, exam techniques, and deep topic understanding to help students achieve Grade 1s and 2s.</p>
+        <span class="service-tag">Forms 4 & 5</span>
+      </div>
+
+      <div class="service-card navy reveal">
+        <span class="service-emoji">📋</span>
+        <h3 class="service-title">SBA Help</h3>
+        <p class="service-desc">Guidance and support with School-Based Assessments. From planning and structuring to writing and presentation — help students submit their best work on time.</p>
+        <span class="service-tag">CSEC SBA</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section">
+    <div class="why-grid">
+      <div class="why-visual reveal">
+        <div class="why-card-main">
+          <div class="big-num">100%</div>
+          <div class="big-label">Commitment to every<br>student's success</div>
+        </div>
+        <div class="why-mini-cards">
+          <div class="mini-card">
+            <div class="m-num">1-on-1</div>
+            <div class="m-label">Personalised Sessions</div>
+          </div>
+          <div class="mini-card">
+            <div class="m-num">📈</div>
+            <div class="m-label">Proven Grade Improvements</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-right reveal">
+        <div class="section-tag">Why Choose Miss Sareeta</div>
+        <h2 class="section-title">A Tutor Who Truly Cares</h2>
+        <ul class="why-points">
+          <li>
+            <div class="why-icon">🎯</div>
+            <div>
+              <div class="why-point-title">Personalised Approach</div>
+              <div class="why-point-desc">Every student learns differently. Sessions are tailored to each child's pace, strengths, and areas that need the most attention.</div>
+            </div>
+          </li>
+          <li>
+            <div class="why-icon">💡</div>
+            <div>
+              <div class="why-point-title">Results-Focused Methods</div>
+              <div class="why-point-desc">Techniques that actually work — past paper drilling, concept mastery, and exam strategy that builds real confidence.</div>
+            </div>
+          </li>
+          <li>
+            <div class="why-icon">🤝</div>
+            <div>
+              <div class="why-point-title">Parent Communication</div>
+              <div class="why-point-desc">Regular updates so parents always know how their child is progressing and what to reinforce at home.</div>
+            </div>
+          </li>
+          <li>
+            <div class="why-icon">📍</div>
+            <div>
+              <div class="why-point-title">Based in Trinidad</div>
+              <div class="why-point-desc">Local understanding of the Caribbean curriculum and exam board requirements — I know what's needed to succeed.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials-bg" id="testimonials">
+  <div class="testimonials-wrap">
+    <div class="section-tag">Parent & Student Reviews</div>
+    <h2 class="section-title">What Families Are Saying</h2>
+    <p class="section-sub">Real results from real students across Trinidad.</p>
+
+    <div class="testimonials-grid">
+      <div class="t-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="t-quote">"My daughter went from failing Maths to passing her SEA with a great score. Miss Sareeta's patience and methods made all the difference."</p>
+        <div class="t-author">
+          <div class="t-avatar">KR</div>
+          <div>
+            <div class="t-name">Kezia R.</div>
+            <div class="t-role">Parent — SEA Student</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="t-quote">"My son's CSEC Biology grade went from a 3 to a 1. Miss Sareeta breaks everything down so clearly. Highly recommend for any CSEC student."</p>
+        <div class="t-author">
+          <div class="t-avatar">TM</div>
+          <div>
+            <div class="t-name">Troy M.</div>
+            <div class="t-role">Parent — CSEC Student</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="t-quote">"I was so stressed about my SBA — Miss Sareeta helped me structure everything properly and I submitted on time. Got full marks for my project!"</p>
+        <div class="t-author">
+          <div class="t-avatar">JA</div>
+          <div>
+            <div class="t-name">Jade A.</div>
+            <div class="t-role">Form 5 Student</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-bg" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="contact-card">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Ready to Book a Session?</h2>
+        <a href="tel:18683799751" class="contact-method">
+          <div class="c-icon">📞</div>
+          <div>
+            <div class="c-label">Phone / WhatsApp</div>
+            <div class="c-value">1-868-379-9751</div>
+          </div>
+        </a>
+        <div class="contact-method">
+          <div class="c-icon">📍</div>
+          <div>
+            <div class="c-label">Location</div>
+            <div class="c-value">Trinidad & Tobago</div>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="c-icon">🕐</div>
+          <div>
+            <div class="c-label">Availability</div>
+            <div class="c-value">Mon – Sat, 8am – 7pm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-side reveal">
+      <div class="section-tag">Send a Message</div>
+      <h2 class="section-title">Let's Talk About Your Child</h2>
+      <p class="section-sub" style="margin-bottom:28px;">Fill out the form and I'll reach out within 24 hours.</p>
+
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="e.g. Trisha Mohammed">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="868-XXX-XXXX">
+      </div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="">Select a service…</option>
+          <option>SEA Preparation</option>
+          <option>CSEC Tutoring</option>
+          <option>SBA Help</option>
+          <option>Multiple Services</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message (Optional)</label>
+        <textarea placeholder="Tell me a little about what your child needs…"></textarea>
+      </div>
+      <button class="btn-submit" onclick="handleSubmit()">Send Message ✉️</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Miss Sareeta</span> · Grades Going Up · Trinidad & Tobago · <a href="tel:18683799751" style="color:var(--gold-light);text-decoration:none;">1-868-379-9751</a></p>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = (i % 3) * 0.12 + 's';
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit handler
+  function handleSubmit() {
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = '✅ Message Sent!';
+    btn.style.background = 'linear-gradient(135deg, #2AA89A, #1E7B6E)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Send Message ✉️';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3500);
+  }
+</script>
+</body>
+</html>
